@@ -129,7 +129,13 @@
       console.clear();
     });
     errorBtns[6].addEventListener('click', () => {
-      console.dir(document.form)
+      const sampleObject = {
+    name: 'Lab 9',
+    type: 'Calculator',
+      firstNum: 1,
+      secondNum: 2
+  };
+  console.dir(sampleObject);
     });
     errorBtns[7].addEventListener('click', () => {
       console.dirxml(document);
@@ -158,13 +164,14 @@
     last: '1982',
   }
 ];
+let square = 0;
 console.table(calculations);
     });
     errorBtns[11].addEventListener('click', () => {
-      console.time()
+      console.time("start time")
     });
     errorBtns[12].addEventListener('click', () => {
-      console.timeEnd();
+      console.timeEnd("end time");
     });
     errorBtns[13].addEventListener('click', () => {
       function firstFunc() {
@@ -175,12 +182,42 @@ console.table(calculations);
         console.trace('Trace button clicked:');
       } 
 
-      firstLayer(); // start the call chain
+      firstFunc(); // start the call chain
       
     });
     errorBtns[14].addEventListener('click', () => {
       noFunction();
       });
+
+      const firstValue = document.querySelector('#first-num').value;
+      const secondValue = document.querySelector('#second-num').value;
+      class InvalidInputError extends Error {
+  constructor(message) {
+    super(message); // (1)
+    this.name = "InvalidInputError"; // (2)
+  }
+}
+try{
+  if (isNaN(Number(firstValue)) || isNaN(Number(secondValue))) {
+    throw new InvalidInputError("Input is not a number!")
+  }
+  else if (isNaN(Number(firstValue)) == false && isNaN(Number(secondValue))==false){
+    
+    console.log("Input is a valid number");
+  }
+  else{
+    throw new Error("Some error");
+
+  }
+}
+catch(err){
+  console.error("ERROR FOUND:", err.name);
+  output.innerHTML=`<h1> Error Found! </h1>`
+}
+finally{
+  console.log("DONE!");
+  alert("Try new numbers!");
+}
   </script>
 </body>
 
