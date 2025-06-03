@@ -187,6 +187,9 @@ console.table(calculations);
     });
     errorBtns[14].addEventListener('click', () => {
       noFunction();
+      window.onerror = function(message, url, line, col, error){
+        console.log("Global Error Caught");
+      }
       });
 
       const firstValue = document.querySelector('#first-num').value;
@@ -198,8 +201,9 @@ console.table(calculations);
   }
 }
 try{
-  if (isNaN(Number(firstValue)) || isNaN(Number(secondValue))) {
+  if (isNaN(Number(firstValue)) == true|| isNaN(Number(secondValue)) == true) {
     throw new InvalidInputError("Input is not a number!")
+    alert("Wrong input; Try something else.")
   }
   else if (isNaN(Number(firstValue)) == false && isNaN(Number(secondValue))==false){
     
@@ -207,16 +211,15 @@ try{
   }
   else{
     throw new Error("Some error");
-
   }
 }
 catch(err){
   console.error("ERROR FOUND:", err.name);
+  const output = document.querySelector('output');
   output.innerHTML=`<h1> Error Found! </h1>`
 }
 finally{
-  console.log("DONE!");
-  alert("Try new numbers!");
+  console.log("DONE! Ready for a new number");
 }
   </script>
 </body>
