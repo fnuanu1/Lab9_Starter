@@ -88,22 +88,21 @@
   </main>
 
   <script>
+    class InvalidInputError extends Error {
+  constructor(message) {
+    super(message); // (1)
+    this.name = "InvalidInputError"; // (2)
+  }}
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
-      e.preventDefault();
+     
+try{
+  e.preventDefault();
       let output = document.querySelector('output');
       let firstNum = document.querySelector('#first-num').value;
       let secondNum = document.querySelector('#second-num').value;
       let operator = document.querySelector('#operator').value;
-      
-      class InvalidInputError extends Error {
-  constructor(message) {
-    super(message); // (1)
-    this.name = "InvalidInputError"; // (2)
-  }
-}
-try{
-  if (isNaN(Number(firstValue)) == true || isNaN(Number(secondValue)) == true) {
+  if (isNaN(Number(firstNum)) == true || isNaN(Number(secondNum)) == true) {
     throw new InvalidInputError("Input is not a number!")
     alert("Wrong input; Try something else.")
   }
@@ -212,11 +211,12 @@ console.table(calculations);
     });
     errorBtns[14].addEventListener('click', () => {
       noFunction();
+      
+      });
+
       window.onerror = function(message, url, line, col, error){
         console.log("Global Error Caught");
       }
-      });
-
 
   </script>
 </body>
