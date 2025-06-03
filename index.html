@@ -115,7 +115,7 @@ try{
 catch(err){
   console.error("ERROR FOUND:", err.name);
   const output = document.querySelector('output');
-  output.innerHTML=`<h1> Error Found! </h1>`
+  output.innerHTML=`Error Found!`
 }
 finally{
   console.log("DONE! Ready for a new number");
@@ -214,9 +214,10 @@ console.table(calculations);
       
       });
 
-      window.onerror = function(message, url, line, col, error){
+      window.onerror=function(message, url, line, col, error){
         console.log("Global Error Caught");
-      }
+        return true;
+      };
 
   </script>
 </body>
