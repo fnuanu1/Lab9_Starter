@@ -95,7 +95,32 @@
       let firstNum = document.querySelector('#first-num').value;
       let secondNum = document.querySelector('#second-num').value;
       let operator = document.querySelector('#operator').value;
-      output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      
+      class InvalidInputError extends Error {
+  constructor(message) {
+    super(message); // (1)
+    this.name = "InvalidInputError"; // (2)
+  }
+}
+try{
+  if (isNaN(Number(firstValue)) == true || isNaN(Number(secondValue)) == true) {
+    throw new InvalidInputError("Input is not a number!")
+    alert("Wrong input; Try something else.")
+  }
+  else {
+    console.log("Input is a valid number");
+    output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+  }
+
+}
+catch(err){
+  console.error("ERROR FOUND:", err.name);
+  const output = document.querySelector('output');
+  output.innerHTML=`<h1> Error Found! </h1>`
+}
+finally{
+  console.log("DONE! Ready for a new number");
+}
     });
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
@@ -192,35 +217,7 @@ console.table(calculations);
       }
       });
 
-      const firstValue = document.querySelector('#first-num').value;
-      const secondValue = document.querySelector('#second-num').value;
-      class InvalidInputError extends Error {
-  constructor(message) {
-    super(message); // (1)
-    this.name = "InvalidInputError"; // (2)
-  }
-}
-try{
-  if (isNaN(Number(firstValue)) == true|| isNaN(Number(secondValue)) == true) {
-    throw new InvalidInputError("Input is not a number!")
-    alert("Wrong input; Try something else.")
-  }
-  else if (isNaN(Number(firstValue)) == false && isNaN(Number(secondValue))==false){
-    
-    console.log("Input is a valid number");
-  }
-  else{
-    throw new Error("Some error");
-  }
-}
-catch(err){
-  console.error("ERROR FOUND:", err.name);
-  const output = document.querySelector('output');
-  output.innerHTML=`<h1> Error Found! </h1>`
-}
-finally{
-  console.log("DONE! Ready for a new number");
-}
+
   </script>
 </body>
 
