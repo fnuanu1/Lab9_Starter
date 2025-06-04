@@ -97,9 +97,9 @@
   <script>
     TrackJS.track('Testing TrackJS!');
     class InvalidInputError extends Error {
-  constructor(message) {
-    super(message); // (1)
-    this.name = "InvalidInputError"; // (2)
+      constructor(message) {
+      super(message); // (1)
+      this.name = "InvalidInputError"; // (2)
   }}
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
@@ -200,10 +200,10 @@ let square = 0;
 console.table(calculations);
     });
     errorBtns[11].addEventListener('click', () => {
-      console.time("start time")
+      console.time("total time")
     });
     errorBtns[12].addEventListener('click', () => {
-      console.timeEnd("start time");
+      console.timeEnd("total time");
     });
     errorBtns[13].addEventListener('click', () => {
       function firstFunc() {
